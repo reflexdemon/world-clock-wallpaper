@@ -1,0 +1,643 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #1a1a2e;
+    color: #ffffff;
+    height: 100vh;
+    overflow: hidden;
+    transition: background-color 0.3s ease;
+}
+
+/* Main Container */
+.clock-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    padding: 20px;
+    gap: 40px;
+}
+
+/* Main Central Clock */
+.main-clock {
+    text-align: center;
+    animation: fadeIn 0.5s ease-in;
+}
+
+.main-clock .time {
+    font-size: clamp(48px, 8vw, 120px);
+    font-weight: 300;
+    letter-spacing: 2px;
+    margin-bottom: 10px;
+    text-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
+    transition: all 0.3s ease;
+}
+
+.main-clock .date {
+    font-size: clamp(16px, 2vw, 24px);
+    font-weight: 400;
+    margin-bottom: 8px;
+    opacity: 0.9;
+    transition: all 0.3s ease;
+}
+
+.main-clock .timezone {
+    font-size: clamp(14px, 1.5vw, 18px);
+    font-weight: 300;
+    opacity: 0.7;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    transition: all 0.3s ease;
+}
+
+/* Additional Clocks */
+.additional-clocks {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 30px;
+    max-width: 90%;
+    animation: slideUp 0.5s ease-in;
+}
+
+.additional-clock {
+    text-align: center;
+    padding: 15px 20px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    min-width: 120px;
+    transition: all 0.3s ease;
+}
+
+.additional-clock:hover {
+    background: rgba(255, 255, 255, 0.15);
+    transform: translateY(-2px);
+}
+
+.additional-clock .time {
+    font-size: clamp(18px, 2.5vw, 28px);
+    font-weight: 400;
+    margin-bottom: 5px;
+}
+
+.additional-clock .date {
+    font-size: clamp(12px, 1.5vw, 16px);
+    opacity: 0.8;
+    margin-bottom: 3px;
+}
+
+.additional-clock .timezone {
+    font-size: clamp(10px, 1.2vw, 14px);
+    opacity: 0.6;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+/* Configuration Panel */
+.config-panel {
+    position: fixed;
+    top: 0;
+    right: -400px;
+    width: 400px;
+    height: 100vh;
+    background: rgba(30, 30, 50, 0.95);
+    backdrop-filter: blur(10px);
+    border-left: 1px solid rgba(255, 255, 255, 0.1);
+    transition: right 0.3s ease;
+    z-index: 1000;
+    overflow-y: auto;
+}
+
+.config-panel.open {
+    right: 0;
+}
+
+.config-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.config-header h3 {
+    font-size: 18px;
+    font-weight: 500;
+}
+
+.close-btn {
+    background: none;
+    border: none;
+    color: #ffffff;
+    font-size: 24px;
+    cursor: pointer;
+    padding: 5px;
+    border-radius: 50%;
+    transition: background-color 0.3s ease;
+}
+
+.close-btn:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+.config-content {
+    padding: 20px;
+}
+
+.config-group {
+    margin-bottom: 20px;
+}
+
+.config-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-size: 14px;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.config-group input,
+.config-group select {
+    width: 100%;
+    padding: 10px;
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 5px;
+    color: #ffffff;
+    font-size: 14px;
+    transition: all 0.3s ease;
+}
+
+.config-group input:focus,
+.config-group select:focus {
+    outline: none;
+    border-color: rgba(255, 255, 255, 0.4);
+    background: rgba(255, 255, 255, 0.15);
+}
+
+.config-group input[type="color"] {
+    height: 40px;
+    cursor: pointer;
+}
+
+.config-group input[type="range"] {
+    padding: 0;
+}
+
+.timezone-management {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 10px;
+}
+
+.timezone-management select {
+    flex: 1;
+}
+
+.timezone-management button {
+    padding: 10px 15px;
+    background: rgba(255, 255, 255, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 5px;
+    color: #ffffff;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.timezone-management button:hover {
+    background: rgba(255, 255, 255, 0.3);
+}
+
+.added-timezones {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.timezone-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px 12px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 5px;
+    font-size: 13px;
+}
+
+.timezone-item .remove-btn {
+    background: rgba(255, 0, 0, 0.3);
+    border: none;
+    color: #ffffff;
+    padding: 4px 8px;
+    border-radius: 3px;
+    cursor: pointer;
+    font-size: 11px;
+    transition: background-color 0.3s ease;
+}
+
+.timezone-item .remove-btn:hover {
+    background: rgba(255, 0, 0, 0.5);
+}
+
+.config-actions {
+    display: flex;
+    gap: 10px;
+    margin-top: 30px;
+}
+
+.save-btn,
+.reset-btn {
+    flex: 1;
+    padding: 12px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: 500;
+    transition: all 0.3s ease;
+}
+
+.save-btn {
+    background: rgba(0, 255, 0, 0.3);
+    color: #ffffff;
+    border: 1px solid rgba(0, 255, 0, 0.4);
+}
+
+.save-btn:hover {
+    background: rgba(0, 255, 0, 0.4);
+}
+
+.reset-btn {
+    background: rgba(255, 255, 255, 0.2);
+    color: #ffffff;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.reset-btn:hover {
+    background: rgba(255, 255, 255, 0.3);
+}
+
+/* Settings Button */
+.settings-btn {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    width: 50px;
+    height: 50px;
+    background: rgba(255, 255, 255, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 50%;
+    color: #ffffff;
+    font-size: 20px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    z-index: 999;
+}
+
+.settings-btn:hover {
+    background: rgba(255, 255, 255, 0.3);
+    transform: rotate(90deg);
+}
+
+/* About Button */
+.about-btn {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    width: 45px;
+    height: 45px;
+    background: rgba(255, 255, 255, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 50%;
+    color: #ffffff;
+    font-size: 18px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    z-index: 999;
+}
+
+.about-btn:hover {
+    background: rgba(255, 255, 255, 0.3);
+    transform: scale(1.1);
+}
+
+/* About Popup */
+.about-popup {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.8);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 2000;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.about-popup.open {
+    display: flex;
+    opacity: 1;
+}
+
+.about-content {
+    background: rgba(30, 30, 50, 0.95);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+    max-width: 500px;
+    max-height: 80vh;
+    width: 90%;
+    overflow-y: auto;
+    animation: slideUp 0.3s ease;
+}
+
+.about-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.about-header h3 {
+    font-size: 20px;
+    font-weight: 500;
+    margin: 0;
+}
+
+.about-body {
+    padding: 20px;
+}
+
+.about-body p {
+    margin-bottom: 15px;
+    line-height: 1.5;
+}
+
+.version {
+    font-size: 14px;
+    opacity: 0.7;
+    text-align: center;
+    margin-bottom: 20px !important;
+}
+
+.description {
+    font-size: 16px;
+    text-align: center;
+    margin-bottom: 25px !important;
+}
+
+.features h4,
+.tech-info h4,
+.contact h4 {
+    font-size: 16px;
+    font-weight: 500;
+    margin-bottom: 10px;
+    color: rgba(255, 255, 255, 0.9);
+}
+
+.features ul {
+    margin: 0 0 20px 20px;
+    padding: 0;
+}
+
+.features li {
+    margin-bottom: 8px;
+    font-size: 14px;
+    line-height: 1.4;
+}
+
+.tech-info p,
+.contact p {
+    font-size: 14px;
+    margin-bottom: 10px;
+    opacity: 0.8;
+}
+
+/* Copyright */
+.copyright {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    text-align: center;
+    padding: 10px;
+    background: rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(5px);
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    z-index: 100;
+}
+
+.copyright p {
+    margin: 0;
+    font-size: 12px;
+    opacity: 0.7;
+    color: #ffffff;
+}
+
+/* Popup Styles */
+.popup {
+    width: 300px;
+    height: 200px;
+}
+
+.popup-content {
+    padding: 20px;
+    text-align: center;
+}
+
+.popup-content h2 {
+    font-size: 18px;
+    margin-bottom: 10px;
+}
+
+.popup-content p {
+    font-size: 14px;
+    margin-bottom: 20px;
+    opacity: 0.8;
+}
+
+.action-btn {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    background: rgba(255, 255, 255, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 5px;
+    color: #ffffff;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.action-btn:hover {
+    background: rgba(255, 255, 255, 0.3);
+}
+
+/* Animations */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: scale(0.9);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+@keyframes slideUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .clock-container {
+        gap: 20px;
+        padding: 15px;
+    }
+    
+    .additional-clocks {
+        gap: 15px;
+        max-width: 95%;
+    }
+    
+    .additional-clock {
+        min-width: 100px;
+        padding: 10px 15px;
+    }
+    
+    .config-panel {
+        width: 100%;
+        right: -100%;
+    }
+    
+    .settings-btn {
+        width: 45px;
+        height: 45px;
+        font-size: 18px;
+    }
+    
+    .about-btn {
+        width: 40px;
+        height: 40px;
+        font-size: 16px;
+        bottom: 15px;
+        right: 15px;
+    }
+    
+    .about-content {
+        max-width: 95%;
+        margin: 10px;
+    }
+}
+
+@media (max-width: 480px) {
+    .clock-container {
+        gap: 15px;
+        padding: 10px;
+    }
+    
+    .additional-clocks {
+        gap: 10px;
+        flex-direction: column;
+        align-items: center;
+        max-width: 100%;
+    }
+    
+    .additional-clock {
+        width: 90%;
+        max-width: 200px;
+    }
+    
+    .config-panel {
+        width: 100%;
+        right: -100%;
+    }
+    
+    .config-content {
+        padding: 15px;
+    }
+    
+    .timezone-management {
+        flex-direction: column;
+    }
+    
+    .config-actions {
+        flex-direction: column;
+    }
+    
+    .about-btn {
+        width: 35px;
+        height: 35px;
+        font-size: 14px;
+        bottom: 10px;
+        right: 10px;
+    }
+    
+    .about-content {
+        max-width: 98%;
+        margin: 5px;
+    }
+    
+    .about-header {
+        padding: 15px;
+    }
+    
+    .about-body {
+        padding: 15px;
+    }
+    
+    .copyright {
+        padding: 8px;
+    }
+    
+    .copyright p {
+        font-size: 11px;
+    }
+}
+
+@media (min-width: 1200px) {
+    .additional-clocks {
+        max-width: 80%;
+    }
+    
+    .additional-clock {
+        min-width: 140px;
+        padding: 20px 25px;
+    }
+}
+
+/* Tablet Styles */
+@media (min-width: 769px) and (max-width: 1024px) {
+    .additional-clocks {
+        gap: 20px;
+    }
+    
+    .additional-clock {
+        min-width: 110px;
+        padding: 12px 18px;
+    }
+    
+    .config-panel {
+        width: 350px;
+    }
+}
