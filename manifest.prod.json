@@ -3,8 +3,8 @@
   "name": "World Clock Wallpaper",
   "version": "1.0.0",
   "description": "Transform your new tab into a beautiful world clock display. Multiple timezones, customizable themes, and responsive design.",
-  "homepage_url": "https://github.com/reflexdemon/world-clock-wallpaper",
-  "author": "Venkateswara VP",
+  "homepage_url": "https://github.com/yourusername/world-clock-wallpaper",
+  "author": "Your Name",
   "permissions": [
     "storage"
   ],
@@ -16,7 +16,7 @@
     "default_title": "World Clock Wallpaper"
   },
   "chrome_url_overrides": {
-    "newtab": "index.html"
+    "newtab": "index.min.html"
   },
   "background": {
     "service_worker": "background.js"

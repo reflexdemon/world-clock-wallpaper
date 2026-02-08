@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>World Clock Wallpaper</title>
+    <link rel="stylesheet" href="styles.min.css">
+</head>
+<body>
+    <a href="#mainClock" class="skip-link">Skip to main content</a>
+    <div class="clock-container" role="main">
+        <div class="main-clock" id="mainClock" role="timer" aria-live="polite" aria-atomic="true" aria-label="Main clock showing current local time">
+            <div class="time" id="mainTime" aria-label="Current time">00:00:00</div>
+            <div class="date" id="mainDate" aria-label="Current date">Monday, January 1, 2024</div>
+            <div class="timezone" id="mainTimezone" aria-label="Timezone">Local Time</div>
+        </div>
+        <div class="additional-clocks" id="additionalClocks" role="group" aria-label="Additional world clocks" aria-live="polite" aria-atomic="true">
+        </div>
+    </div>
+    <div class="config-panel" id="configPanel" role="dialog" aria-labelledby="configTitle" aria-modal="true" aria-hidden="true">
+        <div class="config-header">
+            <h3 id="configTitle">Configuration</h3>
+            <button class="close-btn" id="closeConfig" aria-label="Close configuration panel">×</button>
+        </div>
+        <div class="config-content">
+            <div class="config-group">
+                <label for="bgColor">Background Color:</label>
+                <input type="color" id="bgColor" value="#1a1a2e" aria-label="Select background color" aria-describedby="bgColorHelp">
+                <small id="bgColorHelp">Choose the background color for your clock display</small>
+            </div>
+            <div class="config-group">
+                <label for="fontColor">Font Color:</label>
+                <input type="color" id="fontColor" value="#ffffff" aria-label="Select font color" aria-describedby="fontColorHelp">
+                <small id="fontColorHelp">Choose the text color for your clock display</small>
+            </div>
+            <div class="config-group">
+                <label for="fontFamily">Font Family:</label>
+                <select id="fontFamily" aria-label="Select font family" aria-describedby="fontFamilyHelp">
+                    <option value="Arial, sans-serif">Arial</option>
+                    <option value="Helvetica, sans-serif">Helvetica</option>
+                    <option value="Georgia, serif">Georgia</option>
+                    <option value="Times New Roman, serif">Times New Roman</option>
+                    <option value="Courier New, monospace">Courier New</option>
+                    <option value="Verdana, sans-serif">Verdana</option>
+                </select>
+                <small id="fontFamilyHelp">Choose the font style for your clock display</small>
+            </div>
+            <div class="config-group">
+                <label for="fontSize">Font Size:</label>
+                <input type="range" id="fontSize" min="12" max="48" value="16" aria-label="Adjust font size" aria-valuemin="12" aria-valuemax="48" aria-valuenow="16" aria-describedby="fontSizeHelp">
+                <span id="fontSizeValue" aria-live="polite" aria-atomic="true">16px</span>
+                <small id="fontSizeHelp">Adjust the text size for better readability</small>
+            </div>
+            <div class="config-group">
+                <label for="timeFormat">Time Format:</label>
+                <select id="timeFormat" aria-label="Select time format" aria-describedby="timeFormatHelp">
+                    <option value="24">24-hour</option>
+                    <option value="12">12-hour (AM/PM)</option>
+                </select>
+                <small id="timeFormatHelp">Choose between 12-hour or 24-hour time format</small>
+            </div>
+            <div class="config-group">
+                <label for="dateFormat">Date Format:</label>
+                <select id="dateFormat" aria-label="Select date format" aria-describedby="dateFormatHelp">
+                    <option value="long">Monday, January 1, 2024</option>
+                    <option value="medium">Jan 1, 2024</option>
+                    <option value="short">1/1/2024</option>
+                </select>
+                <small id="dateFormatHelp">Choose how the date should be displayed</small>
+            </div>
+            <div class="config-group">
+                <label>Additional Timezones:</label>
+                <div class="timezone-management">
+                    <select id="timezoneSelect" aria-label="Select timezone to add" aria-describedby="timezoneHelp">
+                        <option value="">Select timezone...</option>
+                    </select>
+                    <button id="addTimezone" aria-label="Add selected timezone">Add</button>
+                </div>
+                <small id="timezoneHelp">Add clocks from different world regions</small>
+                <div class="added-timezones" id="addedTimezones" role="list" aria-label="Added timezones list">
+                </div>
+            </div>
+            <div class="config-actions">
+                <button id="saveConfig" class="save-btn" aria-label="Save all configuration settings">Save Configuration</button>
+                <button id="resetConfig" class="reset-btn" aria-label="Reset all settings to default values">Reset to Default</button>
+            </div>
+        </div>
+    </div>
+    <button class="settings-btn" id="settingsBtn" aria-label="Open configuration settings" aria-expanded="false" aria-controls="configPanel">⚙️</button>
+    <button class="about-btn" id="aboutBtn" aria-label="Open about information" aria-expanded="false" aria-controls="aboutPopup">ℹ️</button>
+    <div class="about-popup" id="aboutPopup" role="dialog" aria-labelledby="aboutTitle" aria-modal="true" aria-hidden="true">
+        <div class="about-content">
+            <div class="about-header">
+                <h3 id="aboutTitle">World Clock Wallpaper</h3>
+                <button class="close-btn" id="closeAbout" aria-label="Close about information">×</button>
+            </div>
+            <div class="about-body">
+                <p class="version">Version 1.0.0</p>
+                <p class="description">
+                    A customizable Chrome extension that displays multiple digital world clocks as your new tab wallpaper.
+                </p>
+                <div class="features">
+                    <h4>Features:</h4>
+                    <ul>
+                        <li>Main central clock with your local timezone</li>
+                        <li>Add multiple clocks from different world regions</li>
+                        <li>Customizable colors, fonts, and sizes</li>
+                        <li>12/24 hour time formats</li>
+                        <li>Multiple date format options</li>
+                        <li>Responsive design for all devices</li>
+                        <li>Persistent settings storage</li>
+                    </ul>
+                </div>
+                <div class="tech-info">
+                    <h4>Technical Details:</h4>
+                    <p>Built with vanilla JavaScript, HTML5, and CSS3</p>
+                    <p>Uses Chrome Extension Manifest V3</p>
+                    <p>Powered by Intl.DateTimeFormat API for timezone support</p>
+                </div>
+                <div class="contact">
+                    <h4>Support:</h4>
+                    <p>For issues or suggestions, please visit the extension repository.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="copyright">
+        <p>© <span id="currentYear"></span> World Clock Wallpaper Extension. All rights reserved.</p>
+    </div>
+    <script src="script.min.js"></script>
+</body>
+</html>

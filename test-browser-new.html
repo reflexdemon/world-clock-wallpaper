@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>World Clock Wallpaper - Browser Test</title>
+    <style>
+        body { 
+            font-family: Arial, sans-serif; 
+            max-width: 1200px; 
+            margin: 0 auto; 
+            padding: 20px; 
+            background: #f5f5f5;
+        }
+        .test-container { 
+            display: grid; 
+            gap: 20px; 
+            margin-bottom: 30px; 
+        }
+        .test-section {
+            background: white; 
+            padding: 20px; 
+            border-radius: 8px; 
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+        h1 { 
+            color: #1a1a2e; 
+            text-align: center; 
+            margin-bottom: 30px; 
+        }
+        h2 { 
+            color: #1a1a2e; 
+            margin-bottom: 15px; 
+        }
+        .status { 
+            font-size: 18px; 
+            font-weight: bold; 
+            margin-bottom: 10px; 
+        }
+        .pass { color: #28a745; }
+        .fail { color: #dc3545; }
+        .pending { color: #ffc107; }
+        .details { 
+            font-size: 14px; 
+            color: #666; 
+            margin-top: 5px; 
+        }
+        .summary { 
+            background: #e9ecef; 
+            padding: 15px; 
+            border-radius: 5px; 
+            margin-top: 30px; 
+        }
+        .summary h2 { color: #1a1a2e; margin-bottom: 10px; }
+        .summary p { margin: 5px 0; }
+    </style>
+</head>
+<body>
+    <h1>🧪 World Clock Wallpaper - Browser Compatibility Test</h1>
+    
+    <div class="test-container">
+        <div class="test-section">
+            <h2>📦 Extension Loading Test</h2>
+            <div class="status" id="loading-status">Testing...</div>
+            <div class="details" id="loading-details"></div>
+        </div>
+        
+        <div class="test-section">
+            <h2>🎨 CSS Features Test</h2>
+            <div class="status" id="css-status">Testing...</div>
+            <div class="details" id="css-details"></div>
+        </div>
+        
+        <div class="test-section">
+            <h2>⚡ JavaScript Features Test</h2>
+            <div class="status" id="js-status">Testing...</div>
+            <div class="details" id="js-details"></div>
+        </div>
+        
+        <div class="test-section">
+            <h2>🌍 Web APIs Test</h2>
+            <div class="status" id="api-status">Testing...</div>
+            <div class="details" id="api-details"></div>
+        </div>
+        
+        <div class="test-section">
+            <h2>📱 Responsive Design Test</h2>
+            <div class="status" id="responsive-status">Testing...</div>
+            <div class="details" id="responsive-details"></div>
+        </div>
+        
+        <div class="test-section">
+            <h2>📁 File Structure Test</h2>
+            <div class="status" id="structure-status">Testing...</div>
+            <div class="details" id="structure-details"></div>
+        </div>
+    </div>
+    
+    <div class="summary">
+        <h2>📊 Test Summary</h2>
+        <p id="overall-status">Running comprehensive browser tests...</p>
+        <p id="recommendations">Test in progress...</p>
+    </div>
+    
+    <script>
+        let testResults = {
+            loading: false,
+            css: false,
+            js: false,
+            api: false,
+            responsive: false,
+            structure: false
+        };
+        
+        // Test 1: Extension Loading
+        async function testLoading() {
+            try {
+                const response = await fetch('script.js');
+                const scriptText = await response.text();
+                
+                // Basic syntax check
+                new Function(scriptText);
+                
+                testResults.loading = true;
+                updateStatus('loading', true, 'Extension loads successfully, no syntax errors');
+            } catch (error) {
+                updateStatus('loading', false, `Loading error: ${error.message}`);
+            }
+        }
+        
+        // Test 2: CSS Features
+        function testCSS() {
+            const cssTests = [
+                { name: 'CSS Grid', test: () => CSS.supports('display', 'grid') },
+                { name: 'CSS Flexbox', test: () => CSS.supports('display', 'flex') },
+                { name: 'CSS Variables', test: () => CSS.supports('color', 'var(--test)') },
+                { name: 'Will Change', test: () => CSS.supports('will-change', 'transform') },
+                { name: 'Focus Visible', test: () => CSS.supports(':focus-visible', 'color', 'red') },
+                { name: 'Backdrop Filter', test: () => CSS.supports('backdrop-filter', 'blur(10px)') }
+            ];
+            
+            const failedTests = cssTests.filter(test => !test.test());
+            
+            if (failedTests.length === 0) {
+                testResults.css = true;
+                updateStatus('css', true, 'All modern CSS features supported');
+            } else {
+                testResults.css = false;
+                const failedNames = failedTests.map(t => t.name).join(', ');
+                updateStatus('css', false, `Unsupported CSS features: ${failedNames}`);
+            }
+        }
+        
+        // Test 3: JavaScript Features
+        function testJavaScript() {
+            const jsTests = [
+                { name: 'ES6 Classes', test: () => typeof class {} === 'function' },
+                { name: 'Arrow Functions', test: () => (() => {}).toString().includes('=>') },
+                { name: 'Async/Await', test: () => (async function() {}).toString().includes('async') },
+                { name: 'Map Objects', test: () => typeof Map === 'function' },
+                { name: 'Template Literals', test: () => {try { eval('`test`'); return true; } catch(e) { return false; } })() },
+                { name: 'Intl.DateTimeFormat', test: () => typeof Intl.DateTimeFormat === 'function' },
+                { name: 'RequestAnimationFrame', test: () => typeof requestAnimationFrame === 'function' }
+            ];
+            
+            const failedTests = jsTests.filter(test => !test.test());
+            
+            if (failedTests.length === 0) {
+                testResults.js = true;
+                updateStatus('js', true, 'All modern JavaScript features supported');
+            } else {
+                testResults.js = false;
+                const failedNames = failedTests.map(t => t.name).join(', ');
+                updateStatus('js', false, `Unsupported JavaScript features: ${failedNames}`);
+            }
+        }
+        
+        // Test 4: Web APIs
+        function testAPIs() {
+            const apiTests = [
+                { name: 'LocalStorage Available', test: () => typeof localStorage !== 'undefined' },
+                { name: 'Session Storage Available', test: () => typeof sessionStorage !== 'undefined' },
+                { name: 'Fetch API', test: () => typeof fetch === 'function' },
+                { name: 'Service Worker Support', test: () => 'serviceWorker' in navigator },
+                { name: 'Web Workers', test: () => typeof Worker !== 'undefined' }
+            ];
+            
+            const failedTests = apiTests.filter(test => !test.test());
+            
+            if (failedTests.length === 0) {
+                testResults.api = true;
+                updateStatus('api', true, 'All required Web APIs available');
+            } else {
+                testResults.api = false;
+                const failedNames = failedTests.map(t => t.name).join(', ');
+                updateStatus('api', false, `Missing Web APIs: ${failedNames}`);
+            }
+        }
+        
+        // Test 5: Responsive Design
+        function testResponsive() {
+            const tests = [
+                { name: 'Viewport Meta', test: () => document.querySelector('meta[name="viewport"]') !== null },
+                { name: 'Media Queries', test: () => window.matchMedia !== undefined },
+                { name: 'Touch Events', test: () => 'ontouchstart' in window },
+                { name: 'Device Pixel Ratio', test: () => window.devicePixelRatio !== undefined }
+            ];
+            
+            const failedTests = tests.filter(test => !test.test());
+            
+            if (failedTests.length === 0) {
+                testResults.responsive = true;
+                updateStatus('responsive', true, 'Responsive design properly implemented');
+            } else {
+                testResults.responsive = false;
+                const failedNames = failedTests.map(t => t.name).join(', ');
+                updateStatus('responsive', false, `Responsive issues: ${failedNames}`);
+            }
+        }
+        
+        // Test 6: File Structure
+        async function testStructure() {
+            const requiredFiles = [
+                'index.html',
+                'styles.css',
+                'script.js',
+                'manifest.json',
+                'popup.html',
+                'popup.js',
+                'background.js'
+            ];
+            
+            try {
+                const results = await Promise.allSettled(
+                    requiredFiles.map(file => 
+                        fetch(file).then(() => ({ file, status: 'exists' }))
+                            .catch(() => ({ file, status: 'missing' }))
+                    )
+                );
+                
+                const missingFiles = results.filter(r => r.value.status === 'missing');
+                
+                if (missingFiles.length === 0) {
+                    testResults.structure = true;
+                    updateStatus('structure', true, 'All required files present');
+                } else {
+                    testResults.structure = false;
+                    const missingNames = missingFiles.map(r => r.value.file).join(', ');
+                    updateStatus('structure', false, `Missing files: ${missingNames}`);
+                }
+            } catch (error) {
+                updateStatus('structure', false, `Structure test error: ${error.message}`);
+            }
+        }
+        
+        function updateStatus(testId, passed, message) {
+            const statusEl = document.getElementById(`${testId}-status`);
+            const detailsEl = document.getElementById(`${testId}-details`);
+            
+            if (passed) {
+                statusEl.className = 'status pass';
+                statusEl.textContent = '✅ PASS';
+            } else {
+                statusEl.className = 'status fail';
+                statusEl.textContent = '❌ FAIL';
+            }
+            
+            detailsEl.textContent = message;
+            updateSummary();
+        }
+        
+        function updateSummary() {
+            const overallEl = document.getElementById('overall-status');
+            const recommendationsEl = document.getElementById('recommendations');
+            
+            const passedTests = Object.values(testResults).filter(Boolean).length;
+            const totalTests = Object.keys(testResults).length;
+            const passRate = (passedTests / totalTests * 100).toFixed(0);
+            
+            if (passedTests === totalTests) {
+                overallEl.textContent = `🎉 ALL TESTS PASSED! (${passedTests}/${totalTests})`;
+                overallEl.style.color = '#28a745';
+                recommendationsEl.textContent = 'Extension is ready for Chrome Web Store submission!';
+                recommendationsEl.style.color = '#28a745';
+            } else {
+                overallEl.textContent = `⚠️ SOME TESTS FAILED (${passedTests}/${totalTests}) - ${passRate}% pass rate`;
+                overallEl.style.color = '#dc3545';
+                
+                if (testResults.loading) {
+                    recommendationsEl.textContent = 'Fix loading issues before submission';
+                } else if (testResults.js) {
+                    recommendationsEl.textContent = 'Update JavaScript compatibility and syntax';
+                } else if (testResults.css) {
+                    recommendationsEl.textContent = 'Use modern CSS features and prefixes';
+                } else if (testResults.api) {
+                    recommendationsEl.textContent = 'Ensure all required Web APIs are available';
+                } else if (testResults.structure) {
+                    recommendationsEl.textContent = 'Ensure all required files are present';
+                } else {
+                    recommendationsEl.textContent = 'Fix failing tests before submission';
+                }
+                recommendationsEl.style.color = '#dc3545';
+            }
+        }
+        
+        // Run all tests
+        async function runAllTests() {
+            updateStatus('loading', 'pending', 'Running extension loading test...');
+            updateStatus('css', 'pending', 'Testing CSS features...');
+            updateStatus('js', 'pending', 'Testing JavaScript features...');
+            updateStatus('api', 'pending', 'Testing Web APIs...');
+            updateStatus('responsive', 'pending', 'Testing responsive design...');
+            updateStatus('structure', 'pending', 'Testing file structure...');
+            
+            await testLoading();
+            await new Promise(resolve => setTimeout(resolve, 500));
+            
+            testCSS();
+            testJavaScript();
+            testAPIs();
+            testResponsive();
+            await new Promise(resolve => setTimeout(resolve, 500));
+            
+            await testStructure();
+        }
+        
+        // Run tests when page loads
+        document.addEventListener('DOMContentLoaded', runAllTests);
+        
+        // Add manual re-run button
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'r' && e.ctrlKey) {
+                runAllTests();
+            }
+        });
+    </script>
+    
+    <div style="margin-top: 20px; text-align: center; color: #666; font-size: 14px;">
+        <p>Press <kbd>Ctrl+R</kbd> to re-run all tests</p>
+    </div>
+</body>
+</html>
