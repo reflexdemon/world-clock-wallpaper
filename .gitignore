@@ -1,2 +1,24 @@
-.qodo
+# Dependencies
+node_modules/
+npm-debug.log*
+
+# Build artifacts
+dist/
+world-clock-wallpaper.zip
+*.log
+
+# Development
 .DS_Store
+.vscode/
+.idea/
+
+# Temporary files
+*.tmp
+*.temp
+.temp
+
+# OS files
+Thumbs.db
+.DS_Store?
+
+
