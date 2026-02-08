@@ -1,156 +1,167 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>World Clock Wallpaper</title>
-    <link rel="stylesheet" href="styles.css">
-</head>
-<body>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <!-- Page Title -->
+    <header class="page-header">
+      <h1 class="page-title">World Clock Wallpaper</h1>
+    </header>
+
     <div class="clock-container">
-        <!-- Main Central Clock -->
-        <div class="main-clock" id="mainClock">
-            <div class="time" id="mainTime">00:00:00</div>
-            <div class="date" id="mainDate">Monday, January 1, 2024</div>
-            <div class="timezone" id="mainTimezone">Local Time</div>
-        </div>
-        
-        <!-- Additional Clocks Row -->
-        <div class="additional-clocks" id="additionalClocks">
-            <!-- Additional clocks will be dynamically added here -->
-        </div>
+      <!-- Main Central Clock -->
+      <div class="main-clock" id="mainClock">
+        <div class="time" id="mainTime">00:00:00</div>
+        <div class="date" id="mainDate">Monday, January 1, 2024</div>
+        <div class="timezone" id="mainTimezone">Local Time</div>
+      </div>
+
+      <!-- Additional Clocks Row -->
+      <div class="additional-clocks" id="additionalClocks">
+        <!-- Additional clocks will be dynamically added here -->
+      </div>
     </div>
-    
+
     <!-- Configuration Panel -->
     <div class="config-panel" id="configPanel">
-        <div class="config-header">
-            <h3>Configuration</h3>
-            <button class="close-btn" id="closeConfig">×</button>
+      <div class="config-header">
+        <h3>Configuration</h3>
+        <button class="close-btn" id="closeConfig">×</button>
+      </div>
+
+      <div class="config-content">
+        <!-- Background Color -->
+        <div class="config-group">
+          <label for="bgColor">Background Color:</label>
+          <input type="color" id="bgColor" value="#1a1a2e" />
         </div>
-        
-        <div class="config-content">
-            <!-- Background Color -->
-            <div class="config-group">
-                <label for="bgColor">Background Color:</label>
-                <input type="color" id="bgColor" value="#1a1a2e">
-            </div>
-            
-            <!-- Font Color -->
-            <div class="config-group">
-                <label for="fontColor">Font Color:</label>
-                <input type="color" id="fontColor" value="#ffffff">
-            </div>
-            
-            <!-- Font Settings -->
-            <div class="config-group">
-                <label for="fontFamily">Font Family:</label>
-                <select id="fontFamily">
-                    <option value="Arial, sans-serif">Arial</option>
-                    <option value="Helvetica, sans-serif">Helvetica</option>
-                    <option value="Georgia, serif">Georgia</option>
-                    <option value="Times New Roman, serif">Times New Roman</option>
-                    <option value="Courier New, monospace">Courier New</option>
-                    <option value="Verdana, sans-serif">Verdana</option>
-                </select>
-            </div>
-            
-            <div class="config-group">
-                <label for="fontSize">Font Size:</label>
-                <input type="range" id="fontSize" min="12" max="48" value="16">
-                <span id="fontSizeValue">16px</span>
-            </div>
-            
-            <!-- Time Format -->
-            <div class="config-group">
-                <label for="timeFormat">Time Format:</label>
-                <select id="timeFormat">
-                    <option value="24">24-hour</option>
-                    <option value="12">12-hour (AM/PM)</option>
-                </select>
-            </div>
-            
-            <!-- Date Format -->
-            <div class="config-group">
-                <label for="dateFormat">Date Format:</label>
-                <select id="dateFormat">
-                    <option value="long">Monday, January 1, 2024</option>
-                    <option value="medium">Jan 1, 2024</option>
-                    <option value="short">1/1/2024</option>
-                </select>
-            </div>
-            
-            <!-- Timezone Management -->
-            <div class="config-group">
-                <label>Additional Timezones:</label>
-                <div class="timezone-management">
-                    <select id="timezoneSelect">
-                        <option value="">Select timezone...</option>
-                        <!-- Timezones will be populated dynamically -->
-                    </select>
-                    <button id="addTimezone">Add</button>
-                </div>
-                <div class="added-timezones" id="addedTimezones">
-                    <!-- Added timezones will be shown here -->
-                </div>
-            </div>
-            
-            <!-- Save Button -->
-            <div class="config-actions">
-                <button id="saveConfig" class="save-btn">Save Configuration</button>
-                <button id="resetConfig" class="reset-btn">Reset to Default</button>
-            </div>
+
+        <!-- Font Color -->
+        <div class="config-group">
+          <label for="fontColor">Font Color:</label>
+          <input type="color" id="fontColor" value="#ffffff" />
         </div>
+
+        <!-- Font Settings -->
+        <div class="config-group">
+          <label for="fontFamily">Font Family:</label>
+          <select id="fontFamily">
+            <option value="Arial, sans-serif">Arial</option>
+            <option value="Helvetica, sans-serif">Helvetica</option>
+            <option value="Georgia, serif">Georgia</option>
+            <option value="Times New Roman, serif">Times New Roman</option>
+            <option value="Courier New, monospace">Courier New</option>
+            <option value="Verdana, sans-serif">Verdana</option>
+          </select>
+        </div>
+
+        <div class="config-group">
+          <label for="fontSize">Font Size:</label>
+          <input type="range" id="fontSize" min="12" max="48" value="16" />
+          <span id="fontSizeValue">16px</span>
+        </div>
+
+        <!-- Time Format -->
+        <div class="config-group">
+          <label for="timeFormat">Time Format:</label>
+          <select id="timeFormat">
+            <option value="24">24-hour</option>
+            <option value="12">12-hour (AM/PM)</option>
+          </select>
+        </div>
+
+        <!-- Date Format -->
+        <div class="config-group">
+          <label for="dateFormat">Date Format:</label>
+          <select id="dateFormat">
+            <option value="long">Monday, January 1, 2024</option>
+            <option value="medium">Jan 1, 2024</option>
+            <option value="short">1/1/2024</option>
+          </select>
+        </div>
+
+        <!-- Timezone Management -->
+        <div class="config-group">
+          <label>Additional Timezones:</label>
+          <div class="timezone-management">
+            <select id="timezoneSelect">
+              <option value="">Select timezone...</option>
+              <!-- Timezones will be populated dynamically -->
+            </select>
+            <button id="addTimezone">Add</button>
+          </div>
+          <div class="added-timezones" id="addedTimezones">
+            <!-- Added timezones will be shown here -->
+          </div>
+        </div>
+
+        <!-- Save Button -->
+        <div class="config-actions">
+          <button id="saveConfig" class="save-btn">Save Configuration</button>
+          <button id="resetConfig" class="reset-btn">Reset to Default</button>
+        </div>
+      </div>
     </div>
-    
+
     <!-- Settings Button -->
     <button class="settings-btn" id="settingsBtn">⚙️</button>
-    
+
     <!-- About Button -->
     <button class="about-btn" id="aboutBtn">ℹ️</button>
-    
+
     <!-- About Popup -->
     <div class="about-popup" id="aboutPopup">
-        <div class="about-content">
-            <div class="about-header">
-                <h3>World Clock Wallpaper</h3>
-                <button class="close-btn" id="closeAbout">×</button>
-            </div>
-            <div class="about-body">
-                <p class="version">Version 1.0</p>
-                <p class="description">
-                    A customizable Chrome extension that displays multiple digital world clocks as your new tab wallpaper.
-                </p>
-                <div class="features">
-                    <h4>Features:</h4>
-                    <ul>
-                        <li>Main central clock with your local timezone</li>
-                        <li>Add multiple clocks from different world regions</li>
-                        <li>Customizable colors, fonts, and sizes</li>
-                        <li>12/24 hour time formats</li>
-                        <li>Multiple date format options</li>
-                        <li>Responsive design for all devices</li>
-                        <li>Persistent settings storage</li>
-                    </ul>
-                </div>
-                <div class="tech-info">
-                    <h4>Technical Details:</h4>
-                    <p>Built with vanilla JavaScript, HTML5, and CSS3</p>
-                    <p>Uses Chrome Extension Manifest V3</p>
-                    <p>Powered by Intl.DateTimeFormat API for timezone support</p>
-                </div>
-                <div class="contact">
-                    <h4>Support:</h4>
-                    <p>For issues or suggestions, please visit the extension repository.</p>
-                </div>
-            </div>
+      <div class="about-content">
+        <div class="about-header">
+          <h3>World Clock Wallpaper</h3>
+          <button class="close-btn" id="closeAbout">×</button>
         </div>
+        <div class="about-body">
+          <p class="version">Version 1.0</p>
+          <p class="description">
+            A customizable Chrome extension that displays multiple digital world
+            clocks as your new tab wallpaper.
+          </p>
+          <div class="features">
+            <h4>Features:</h4>
+            <ul>
+              <li>Main central clock with your local timezone</li>
+              <li>Add multiple clocks from different world regions</li>
+              <li>Customizable colors, fonts, and sizes</li>
+              <li>12/24 hour time formats</li>
+              <li>Multiple date format options</li>
+              <li>Responsive design for all devices</li>
+              <li>Persistent settings storage</li>
+            </ul>
+          </div>
+          <div class="tech-info">
+            <h4>Technical Details:</h4>
+            <p>Built with vanilla JavaScript, HTML5, and CSS3</p>
+            <p>Uses Chrome Extension Manifest V3</p>
+            <p>Powered by Intl.DateTimeFormat API for timezone support</p>
+          </div>
+          <div class="contact">
+            <h4>Support:</h4>
+            <p>
+              For issues or suggestions, please visit the extension repository.
+            </p>
+          </div>
+        </div>
+      </div>
     </div>
-    
+
     <!-- Copyright Information -->
     <div class="copyright">
-        <p>© <span id="currentYear"></span> World Clock Wallpaper Extension. All rights reserved.</p>
+      <p>
+        © <span id="currentYear"></span> World Clock Wallpaper Extension. All
+        rights reserved.
+      </p>
     </div>
-    
+
     <script src="script.js"></script>
-</body>
+  </body>
 </html>
