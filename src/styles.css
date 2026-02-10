@@ -24,6 +24,10 @@ body {
   pointer-events: none;
 }
 
+.page-header .version {
+  font-size: x-small;
+}
+
 .page-title {
   font-size: clamp(24px, 3vw, 36px);
   font-weight: 200;
