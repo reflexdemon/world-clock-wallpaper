@@ -113,6 +113,9 @@
     <!-- About Button -->
     <button class="about-btn" id="aboutBtn">ℹ️</button>
 
+    <!-- Help Button -->
+    <button class="help-btn" id="helpBtn">❓</button>
+
     <!-- About Popup -->
     <div class="about-popup" id="aboutPopup">
       <div class="about-content">
@@ -149,6 +152,168 @@
             <p>
               For issues or suggestions, please visit the extension repository.
             </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Help Popup -->
+    <div class="help-popup" id="helpPopup">
+      <div class="help-content">
+        <div class="help-header">
+          <h3>Help & Configuration Guide</h3>
+          <button class="close-btn" id="closeHelp">×</button>
+        </div>
+        <div class="help-body">
+          <div class="help-section">
+            <h4>🎨 Appearance Settings</h4>
+            
+            <div class="help-item">
+              <h5>Background Color</h5>
+              <p>Changes the background color of the entire new tab page. Choose a color that's comfortable for your eyes and complements the clock display.</p>
+              <div class="help-tip">💡 <strong>Tip:</strong> Dark backgrounds work well with light text for better visibility.</div>
+            </div>
+
+            <div class="help-item">
+              <h5>Font Color</h5>
+              <p>Sets the text color for all clock displays and interface elements. Ensure good contrast with your background color.</p>
+              <div class="help-tip">💡 <strong>Tip:</strong> White text on dark backgrounds or black text on light backgrounds provides best readability.</div>
+            </div>
+
+            <div class="help-item">
+              <h5>Font Family</h5>
+              <p>Choose from different font styles for the clock display. Each font has its own personality and readability characteristics.</p>
+              <ul>
+                <li><strong>Arial/Helvetica:</strong> Clean, modern sans-serif fonts</li>
+                <li><strong>Georgia/Times:</strong> Classic serif fonts</li>
+                <li><strong>Courier New:</strong> Monospace font for digital clock feel</li>
+                <li><strong>Verdana:</strong> Wide, readable sans-serif font</li>
+              </ul>
+            </div>
+
+            <div class="help-item">
+              <h5>Font Size</h5>
+              <p>Adjusts the size of all text elements. Range from 12px (small) to 48px (very large).</p>
+              <div class="help-tip">💡 <strong>Tip:</strong> Larger sizes are great for viewing from a distance or on high-resolution displays.</div>
+            </div>
+          </div>
+
+          <div class="help-section">
+            <h4>⏰ Time & Date Settings</h4>
+            
+            <div class="help-item">
+              <h5>Time Format</h5>
+              <p>Choose how time is displayed:</p>
+              <ul>
+                <li><strong>24-hour:</strong> 00:00:00 to 23:59:59 (e.g., 14:30:00)</li>
+                <li><strong>12-hour:</strong> 12:00:00 AM/PM to 11:59:59 PM (e.g., 2:30:00 PM)</li>
+              </ul>
+            </div>
+
+            <div class="help-item">
+              <h5>Date Format</h5>
+              <p>Select how the date appears in the clock display:</p>
+              <ul>
+                <li><strong>Long:</strong> Monday, January 1, 2024</li>
+                <li><strong>Medium:</strong> Jan 1, 2024</li>
+                <li><strong>Short:</strong> 1/1/2024</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="help-section">
+            <h4>🌍 Timezone Management</h4>
+            
+            <div class="help-item">
+              <h5>Adding Timezones</h5>
+              <p>Add clocks from different regions around the world:</p>
+              <ol>
+                <li>Click the <strong>⚙️ Settings</strong> button</li>
+                <li>Scroll to <strong>"Additional Timezones"</strong> section</li>
+                <li>Select a timezone from the dropdown menu</li>
+                <li>Click <strong>"Add"</strong> to include it in your display</li>
+                <li>Save your configuration</li>
+              </ol>
+            </div>
+
+            <div class="help-item">
+              <h5>Managing Timezones</h5>
+              <p>After adding timezones, you can:</p>
+              <ul>
+                <li>Remove unwanted timezones using the <strong>Remove</strong> button next to each</li>
+                <li>Drag to reorder (if supported in future updates)</li>
+                <li>View up to 6 additional clocks simultaneously</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="help-section">
+            <h4>💾 Configuration Management</h4>
+            
+            <div class="help-item">
+              <h5>Saving Settings</h5>
+              <p>Click the <strong>"Save Configuration"</strong> button to store your preferences. Your settings are saved to Chrome's sync storage and will be available across all your signed-in devices.</p>
+            </div>
+
+            <div class="help-item">
+              <h5>Reset to Default</h5>
+              <p>Click <strong>"Reset to Default"</strong> to restore all settings to their original values:</p>
+              <ul>
+                <li>Background: Dark blue (#1a1a2e)</li>
+                <li>Text: White (#ffffff)</li>
+                <li>Font: Arial, 16px</li>
+                <li>Time: 24-hour format</li>
+                <li>Date: Long format</li>
+                <li>No additional timezones</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="help-section">
+            <h4>🚀 Quick Start Guide</h4>
+            
+            <div class="help-item">
+              <h5>Getting Started</h5>
+              <ol>
+                <li>Open a new tab to see your world clock</li>
+                <li>Click <strong>⚙️ Settings</strong> to customize appearance</li>
+                <li>Add your favorite timezones from around the world</li>
+                <li>Click <strong>Save Configuration</strong> to apply changes</li>
+                <li>Enjoy your personalized world clock wallpaper!</li>
+              </ol>
+            </div>
+
+            <div class="help-item">
+              <h5>Keyboard Shortcuts</h5>
+              <ul>
+                <li><strong>ESC:</strong> Close any open popup (Settings, About, Help)</li>
+                <li><strong>Enter:</strong> Save configuration when focused on Save button</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="help-section">
+            <h4>🔧 Troubleshooting</h4>
+            
+            <div class="help-item">
+              <h5>Clocks Not Updating</h5>
+              <p>If clocks stop updating:</p>
+              <ul>
+                <li>Refresh the new tab page (Ctrl+R or Cmd+R)</li>
+                <li>Check if Chrome extensions are enabled</li>
+                <li>Try disabling other new tab extensions</li>
+              </ul>
+            </div>
+
+            <div class="help-item">
+              <h5>Settings Not Saving</h5>
+              <p>If your configuration doesn't persist:</p>
+              <ul>
+                <li>Ensure you're signed into Chrome</li>
+                <li>Check if Chrome sync is enabled</li>
+                <li>Try clicking Save again after a few seconds</li>
+              </ul>
+            </div>
           </div>
         </div>
       </div>

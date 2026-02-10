@@ -232,10 +232,27 @@ class WorldClockWallpaper {
             document.getElementById('aboutPopup').classList.remove('open');
         });
         
+        // Help button
+        document.getElementById('helpBtn').addEventListener('click', () => {
+            document.getElementById('helpPopup').classList.add('open');
+        });
+        
+        // Close help button
+        document.getElementById('closeHelp').addEventListener('click', () => {
+            document.getElementById('helpPopup').classList.remove('open');
+        });
+        
         // Close about popup when clicking outside
         document.getElementById('aboutPopup').addEventListener('click', (e) => {
             if (e.target === e.currentTarget) {
                 document.getElementById('aboutPopup').classList.remove('open');
+            }
+        });
+        
+        // Close help popup when clicking outside
+        document.getElementById('helpPopup').addEventListener('click', (e) => {
+            if (e.target === e.currentTarget) {
+                document.getElementById('helpPopup').classList.remove('open');
             }
         });
         
