@@ -3,8 +3,8 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>World Clock Wallpaper</title>
-    <link rel="stylesheet" href="styles.css" />
+    <title>World Clock Wallpaper v<%= version %></title>
+
   </head>
   <body>
     <!-- Page Title -->
@@ -121,7 +121,7 @@
           <button class="close-btn" id="closeAbout">×</button>
         </div>
         <div class="about-body">
-          <p class="version">Version 1.0</p>
+          <p class="version">Version <%= version %></p>
           <p class="description">
             A customizable Chrome extension that displays multiple digital world
             clocks as your new tab wallpaper.
@@ -162,6 +162,6 @@
       </p>
     </div>
 
-    <script src="script.js"></script>
+
   </body>
 </html>

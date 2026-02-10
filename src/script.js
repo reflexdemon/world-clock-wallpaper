@@ -1,3 +1,5 @@
+import './styles.css';
+
 // World Clock Wallpaper Extension Script
 class WorldClockWallpaper {
     constructor() {
