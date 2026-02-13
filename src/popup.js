@@ -1,3 +1,5 @@
+import './styles.css';
+
 // Popup script for World Clock Wallpaper extension
 document.addEventListener('DOMContentLoaded', () => {
     // Open new tab button
